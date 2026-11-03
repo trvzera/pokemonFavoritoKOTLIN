@@ -9,11 +9,27 @@ data class Pokemon(
     val height: Int,
     val weight: Int,
     val sprites: PokemonSprites,
-    val types: List<PokemonTipo>
+    val types: List<PokemonTipo>,
+    val abilities: List<PokemonHabilidade>? = null,
+    val stats: List<PokemonAtributo>? = null
 )
 
 data class PokemonSprites(
-    @SerializedName("front_default") val imagem: String?
+    @SerializedName("front_default") val imagem: String?,
+    val other: PokemonOutrasImagens? = null
+)
+
+data class PokemonOutrasImagens(
+    @SerializedName("official-artwork") val arteOficial: PokemonArte?
+)
+
+data class PokemonArte(@SerializedName("front_default") val imagem: String?)
+
+data class PokemonHabilidade(val ability: Tipo)
+
+data class PokemonAtributo(
+    @SerializedName("base_stat") val valor: Int,
+    val stat: Tipo
 )
 
 data class PokemonTipo(
